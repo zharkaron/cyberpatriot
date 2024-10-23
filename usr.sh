@@ -5,8 +5,17 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-file_path="$!"
+file="$1"
 
-for user in $(grep -Fxv -f <(awk -F: '$3 >= 1000 {print $1}' /etc/passwd) $1); do
-  echo $user
+#Delete user from system
+for user in $(grep -Fxv -f $file <(awk -F: '$3 >= 1000 {print $1}' /etc/passwd)); do
+        userdel $user
+        echo "$user has been deleted"
+done
+
+
+#Add user from file 
+for user in $(grep -Fxv -f <(awk -F: '$3 >= 1000 {print $1}' /etc/passwd) $file); do
+        useradd $user
+        echo "$user has been added"
 done
