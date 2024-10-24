@@ -11,3 +11,6 @@ this is going to remove and add all admins from the system that are not in the s
 
 ufw.sh is just made to enable the firewall
 
+apt.sh has not been tested yet it should set the daily updates to automatic and update your own computer once its
+once its done writing the input into the file tested and works but not sure if its going to give points yet
+to be soon tested
