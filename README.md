@@ -1,16 +1,16 @@
-All of this scripts are made for the ubuntu image im not sure if its going to work for other distributions
+Change the file permissions to make the script executable:
+chmod +x myscript.sh
 
-use the user.sh properly double check all of the users are properly added to a file and run the script 
-sudo ./user.sh <file_name>
-this is going to delete and add all users that are in the file so make sure to add administrators
+You can run the script in two ways:
+./myscript.sh
+bash myscript.sh
 
-use the adm.sh properly double check all of the admins are in the file else its going to add or remove them run 
-sudo ./adm.sh <file_name>
-this is going to remove and add all admins from the system that are not in the system
+The command ./script.sh <file_name> is used to run a script named script.sh located in the current directory and pass <file_name> as an argument to the script.
 
+To use the script, run it with the path to a file containing usernames; it will delete users not listed in the file, add users from the file who are not already in the system, and ensure that admin users remain unchanged.
 
-ufw.sh is just made to enable the firewall
+To use the script, run it with the path to a file containing usernames; it will remove users from the `sudo` group who are not listed in the file and add users from the file to the `sudo` group if they are not already members.
 
-apt.sh has not been tested yet it should set the daily updates to automatic and update your own computer once its
-once its done writing the input into the file tested and works but not sure if its going to give points yet
-to be soon tested
+To use the script, run it with the name of a package; it will stop related services, list any installed related packages, remove the specified package along with its configuration files, clean up unused dependencies, delete remaining files, and remove the associated group.
+
+To use the script, run it with the name of the service you want to disable; it will stop, disable, and mask the specified service, ensuring it cannot be started again.
