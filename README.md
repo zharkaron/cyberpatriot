@@ -1,9 +1,8 @@
 Change the file permissions to make the script executable:
 chmod +x myscript.sh
 
-You can run the script in two ways:
+You can run the script:
 ./myscript.sh
-bash myscript.sh
 
 The command ./script.sh <file_name> is used to run a script named script.sh located in the current directory and pass <file_name> as an argument to the script.
 
