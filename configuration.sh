@@ -70,3 +70,34 @@ do
         echo "service $srv has been disabled" | tee -a file/srv_disabled
         read -p "Do you want to remove another service? " answer
 done
+#################################### SSH configuration to disable root login #######################################
+#!/bin/bash
+
+# Define the path to the sshd_config file
+SSHD_CONFIG="/etc/ssh/sshd_config"
+BACKUP_CONFIG="/etc/ssh/sshd_config.bak"
+
+# Check if the sshd_config file exists
+if [ ! -f "$SSHD_CONFIG" ]; then
+    echo "Error: SSH configuration file $SSHD_CONFIG not found!"
+    exit 1
+fi
+
+# Backup the original sshd_config file
+echo "Backing up the original SSH configuration file to $BACKUP_CONFIG"
+sudo cp "$SSHD_CONFIG" "$BACKUP_CONFIG"
+
+# Disable root login by modifying the sshd_config file
+echo "Disabling root login in $SSHD_CONFIG"
+sudo sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' "$SSHD_CONFIG"
+sudo sed -i 's/^PermitRootLogin.*/PermitRootLogin no/' "$SSHD_CONFIG"
+
+# Restart SSH service to apply changes
+echo "Restarting SSH service to apply changes"
+sudo systemctl restart sshd
+
+# Check the status of SSH service
+echo "Checking the status of SSH service"
+sudo systemctl status sshd | grep "Active"
+
+echo "Root login has been disabled. Please verify by testing SSH login."
